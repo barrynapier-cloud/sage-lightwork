@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sage Lightwork: Change your brain, change your life.</title>
+<meta name="description" content="Guided light and sound sessions at Sage Medical + Wellness. Deep calm, sharp focus, or a genuine sober-psychedelic journey in about twenty minutes, screened by our clinical team. Powered by the Roxiva RX1. Book your first session for $49." />
+<!--
+  SAGE, LIGHTWORK SESSIONS · concept sales page (Apple-grade rebuild)
+  Bracketed [ ... ] = placeholders for Sage to replace. Pricing & testimonials illustrative.
+-->
+<style>
+:root{
+  /* ground / experience */
+  --ground:#060709; --ground-2:#0A0C10; --ink:#F3F4F6; --ink-2:#B9BEC9; --ink-3:#818897; --ink-4:#4E5563;
+  --hair:rgba(255,255,255,.09); --hair-2:rgba(255,255,255,.14);
+  /* clinical / light */
+  --bone:#F5F2EC; --paper:#FBFAF5; --clay:#1A1B1D; --clay-2:#585549; --clay-3:#8B8677; --line:#E6E0D4;
+  --shadow:0 30px 70px -34px rgba(35,28,14,.4);
+  /* accent + light spectrum */
+  --sage:#7F9A72; --sage-2:#6C8760; --sage-deep:#4E6549; --gold:#C69A4E;
+  --cyan:#46E6FF; --violet:#8B6CFF; --magenta:#FF5AA3; --amber:#FFB24D;
+  --spectrum:linear-gradient(100deg,var(--cyan),var(--violet) 44%,var(--magenta) 72%,var(--amber));
+  /* type */
+  --sans:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue','Inter',system-ui,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:'SF Mono','JetBrains Mono',ui-monospace,Menlo,monospace;
+  /* scale */
+  --t-hero:clamp(3.25rem,10vw,8.75rem);
+  --t-h2:clamp(2.1rem,1.4rem + 3.2vw,4.25rem);
+  --t-h3:clamp(1.45rem,1.1rem + 1.6vw,2.35rem);
+  --t-h4:clamp(1.18rem,1.05rem + .5vw,1.4rem);
+  --t-lead:clamp(1.18rem,1.05rem + .7vw,1.55rem);
+  --t-body:clamp(1rem,.96rem + .2vw,1.12rem);
+  --wrap:1160px; --wrap-narrow:900px; --gutter:clamp(22px,5vw,72px);
+  --sec:clamp(88px,13vw,190px);
+  --r-sm:12px; --r:18px; --r-lg:28px; --pill:100px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ground);color:var(--ink-2);font-family:var(--sans);font-size:var(--t-body);
+  line-height:1.62;letter-spacing:-.011em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
+  font-feature-settings:"ss01","cv01","cv11"}
+h1,h2,h3,h4{color:var(--ink);font-weight:600;margin:0;line-height:1.03;letter-spacing:-.035em;text-wrap:balance}
+h3{letter-spacing:-.028em}h4{letter-spacing:-.02em;font-weight:600}
+p{margin:0;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--sage);outline-offset:3px;border-radius:4px}
+::selection{background:rgba(127,154,114,.45);color:#fff}
+
+#orb{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;transition:opacity .6s ease}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+.veil{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(130% 100% at 50% 32%,transparent 46%,rgba(6,7,9,.72) 100%)}
+main{position:relative;z-index:2}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter)}
+.narrow{max-width:var(--wrap-narrow)}
+.section{padding-block:var(--sec);position:relative}
+.section.light{background:var(--bone);color:var(--clay-2);z-index:2;
+  --ink:#17181A;--ink-2:#585549;--ink-3:#8B8677;--ink-4:#B4AE9F;--hair:var(--line);--hair-2:#DAD3C4}
+.light + .light{padding-top:0}
+
+/* type utilities */
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-3);
+  display:inline-flex;align-items:center;gap:12px;font-weight:500}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--sage)}
+.eyebrow.c{justify-content:center}
+.lead{font-size:var(--t-lead);line-height:1.42;color:var(--ink-2);max-width:34ch;letter-spacing:-.017em;font-weight:400}
+.small{font-size:.85rem;line-height:1.6;color:var(--ink-3);letter-spacing:-.005em}
+.spectrum-text{background:var(--spectrum);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* buttons */
+.btn{--bx:0px;--by:0px;display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:1rem;font-weight:600;
+  letter-spacing:-.01em;padding:15px 26px;border-radius:var(--pill);border:1px solid transparent;cursor:pointer;background:none;
+  color:var(--ink);transition:transform .5s cubic-bezier(.2,.9,.25,1),background .25s,border-color .25s,box-shadow .35s;
+  transform:translate(var(--bx),var(--by));white-space:nowrap}
+.btn-primary{background:var(--ink);color:var(--ground)}
+.btn-primary:hover{box-shadow:0 16px 44px -14px rgba(200,220,255,.4)}
+.light .btn-primary{background:var(--clay);color:#fff}
+.light .btn-primary:hover{box-shadow:var(--shadow)}
+.btn-secondary{border-color:var(--hair-2);color:var(--ink);backdrop-filter:blur(6px)}
+.btn-secondary:hover{background:rgba(255,255,255,.05);border-color:var(--ink-3)}
+.light .btn-secondary:hover{background:rgba(0,0,0,.03)}
+.btn .arw{transition:transform .3s}
+.btn:hover .arw{transform:translateX(3px)}
+.btn-sm{padding:11px 20px;font-size:.92rem}
+.risk{font-size:.82rem;color:var(--ink-3);display:flex;gap:8px 18px;flex-wrap:wrap;align-items:center;letter-spacing:-.005em}
+.risk span{display:inline-flex;align-items:center;gap:7px}
+.risk svg{width:14px;height:14px;color:var(--sage)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:transform .5s cubic-bezier(.3,.9,.3,1),background .4s,border-color .4s;
+  border-bottom:1px solid transparent}
+.nav.hide{transform:translateY(-102%)}
+.nav.scrolled{background:rgba(7,8,11,.62);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border-bottom-color:var(--hair)}
+.nav .row{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:12px;font-size:1.35rem;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.brand .mark{width:24px;height:24px;border-radius:50%;position:relative;
+  background:conic-gradient(from 130deg,var(--sage),var(--cyan),var(--violet),var(--amber),var(--sage));box-shadow:0 0 20px -3px var(--sage)}
+.brand .mark::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--ground)}
+.brand small{display:block;font-family:var(--mono);font-size:.52rem;letter-spacing:.22em;color:var(--ink-4);text-transform:uppercase;margin-top:2px;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:.9rem;color:var(--ink-3);transition:.2s;font-weight:500;letter-spacing:-.01em}
+.nav-links a:hover{color:var(--ink)}
+@media(max-width:920px){.nav-links{display:none}}
+
+/* floating desktop book pill */
+.bookpill{position:fixed;right:clamp(20px,4vw,40px);bottom:32px;z-index:48;opacity:0;transform:translateY(20px) scale(.96);
+  pointer-events:none;transition:.5s cubic-bezier(.2,.9,.25,1);box-shadow:0 20px 50px -18px rgba(0,0,0,.7)}
+.bookpill.show{opacity:1;transform:none;pointer-events:auto}
+@media(max-width:920px){.bookpill{display:none}}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:96px var(--gutter) 0;position:relative}
+.hero .inner{max-width:1000px;display:flex;flex-direction:column;align-items:center}
+.hero .eyebrow{opacity:0;animation:fade .9s ease .1s forwards}
+.hero h1{font-size:var(--t-hero);letter-spacing:-.045em;line-height:.92;margin-top:28px}
+.hero h1 .l{display:block;opacity:0;transform:translateY(26px)}
+.hero.ready h1 .l{animation:rise 1.05s cubic-bezier(.16,.8,.24,1) forwards}
+.hero h1 .l:nth-child(1){animation-delay:.22s}
+.hero h1 .l:nth-child(2){animation-delay:.36s}
+.hero .lead{margin-top:30px;max-width:40ch;opacity:0}
+.hero.ready .lead{animation:rise 1s ease .62s forwards}
+.hero .cta{margin-top:38px;display:flex;gap:13px;flex-wrap:wrap;justify-content:center;opacity:0}
+.hero.ready .cta{animation:rise 1s ease .78s forwards}
+.hero .risk{margin-top:26px;justify-content:center;opacity:0}
+.hero.ready .risk{animation:rise 1s ease .92s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+.scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-4);opacity:0}
+.hero.ready .scrollcue{animation:fade 1s ease 1.3s forwards}
+.scrollcue .bar{width:1px;height:44px;background:linear-gradient(180deg,var(--sage),transparent);overflow:hidden;position:relative}
+.scrollcue .bar::after{content:"";position:absolute;top:-44px;left:0;width:1px;height:44px;background:var(--sage);animation:cue 2.6s ease-in-out infinite}
+@keyframes cue{to{transform:translateY(88px)}}
+
+/* PROOF STRIP */
+.proof{border-block:1px solid var(--hair);background:rgba(9,11,15,.5);backdrop-filter:blur(8px)}
+.proof .row{display:flex;justify-content:center;flex-wrap:wrap;gap:0}
+.proof .st{padding:34px clamp(20px,4vw,52px);text-align:center;border-right:1px solid var(--hair);flex:1;min-width:180px}
+.proof .st:last-child{border-right:none}
+.proof .n{font-size:clamp(1.9rem,3vw,2.6rem);color:var(--ink);font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.proof .n .u{color:var(--sage)}
+.proof .k{font-size:.78rem;color:var(--ink-3);margin-top:10px;letter-spacing:.01em}
+@media(max-width:720px){.proof .st{border-right:none;border-bottom:1px solid var(--hair);flex-basis:50%}.proof .st:nth-last-child(-n+1){border-bottom:none}}
+
+/* BIG STATEMENT */
+.statement{text-align:center}
+.statement p{font-family:var(--serif);font-weight:500;font-size:var(--t-h2);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+  max-width:20ch;margin:0 auto}
+.statement p .mut{color:var(--ink-4)}
+.statement .sub{font-family:var(--sans);font-size:var(--t-lead);color:var(--ink-2);max-width:52ch;margin:30px auto 0;font-weight:400;letter-spacing:-.015em;line-height:1.45}
+
+/* SECTION HEAD */
+.shead{max-width:640px;margin-bottom:clamp(46px,7vw,84px)}
+.shead.c{margin-inline:auto;text-align:center}
+.shead.c .eyebrow{justify-content:center}
+.shead h2{font-size:var(--t-h2);margin-top:22px}
+.shead p{margin-top:22px;font-size:var(--t-lead);color:var(--ink-2);max-width:46ch;font-weight:400;letter-spacing:-.015em;line-height:1.45}
+.shead.c p{margin-inline:auto}
+
+/* SESSION CARDS */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:840px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.cards{grid-template-columns:1fr}}
+.card{position:relative;border:1px solid var(--hair);border-radius:var(--r-lg);padding:30px 28px 26px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.008));min-height:230px;display:flex;flex-direction:column;
+  transition:transform .55s cubic-bezier(.2,.9,.25,1),border-color .4s,background .4s}
+.card::before{content:"";position:absolute;inset:0;opacity:.5;transition:opacity .5s;
+  background:radial-gradient(120% 80% at 82% 0%,var(--g1),transparent 58%);mix-blend-mode:screen;filter:saturate(1.1)}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.card:hover{transform:translateY(-6px);border-color:var(--hair-2)}
+.card:hover::before{opacity:.85}
+.card .f{position:relative;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.card .dur{position:absolute;top:28px;right:28px;font-family:var(--mono);font-size:.68rem;color:var(--ink-4)}
+.card h4{position:relative;font-size:1.55rem;margin-top:auto;letter-spacing:-.03em}
+.card p{position:relative;font-size:.92rem;color:var(--ink-3);margin-top:8px;line-height:1.45}
+.card .go{position:relative;margin-top:18px;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--sage);
+  display:inline-flex;gap:7px;align-items:center;transition:.3s}
+.card:hover .go{color:#a6bd97}
+.card .go .arw{transition:transform .3s}.card:hover .go .arw{transform:translateX(4px)}
+
+/* EXPERIENCE INVITE */
+.invite{position:relative;border:1px solid var(--hair);border-radius:var(--r-lg);overflow:hidden;text-align:center;
+  padding:clamp(48px,8vw,96px) var(--gutter);background:radial-gradient(120% 140% at 50% 0%,rgba(139,108,255,.12),transparent 55%)}
+.invite h3{font-size:var(--t-h2);letter-spacing:-.035em}
+.invite p{max-width:44ch;margin:20px auto 32px;color:var(--ink-2);font-size:var(--t-lead);font-weight:400;letter-spacing:-.015em}
+.invite .pulseorb{width:120px;height:120px;margin:0 auto 34px;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 50% 42%,#fff,var(--cyan) 40%,var(--violet) 78%);filter:blur(.5px);
+  box-shadow:0 0 80px 12px rgba(120,140,255,.5);animation:orbpulse 4.4s ease-in-out infinite}
+@keyframes orbpulse{0%,100%{transform:scale(.94);box-shadow:0 0 70px 8px rgba(120,140,255,.4)}50%{transform:scale(1.06);box-shadow:0 0 110px 20px rgba(160,120,255,.6)}}
+
+/* MECHANISM / WAVE */
+.mech{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(40px,6vw,88px);align-items:center}
+@media(max-width:920px){.mech{grid-template-columns:1fr}}
+.wavebox{border:1px solid var(--hair);border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.006));padding:28px;overflow:hidden}
+.wavebox canvas{width:100%;height:200px;display:block}
+.wavebox .wl{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.wavebox .big{font-family:var(--mono);font-size:2.4rem;color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums;font-weight:500}
+.wavebox .big span{font-size:1rem;color:var(--ink-3)}
+.wavebox input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--violet),var(--cyan));outline:none;margin:16px 0 6px}
+.wavebox input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;cursor:pointer;box-shadow:0 0 0 6px rgba(127,154,114,.22),0 4px 14px rgba(0,0,0,.5)}
+.wavebox input[type=range]::-moz-range-thumb{width:20px;height:20px;border:none;border-radius:50%;background:#fff;cursor:pointer}
+.brow{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.chip{font-family:var(--mono);font-size:.72rem;padding:7px 13px;border-radius:var(--pill);border:1px solid var(--hair);color:var(--ink-3);cursor:pointer;transition:.2s;background:none}
+.chip:hover{border-color:var(--ink-3);color:var(--ink)}
+.chip.on{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.mstep{display:flex;gap:20px;padding:20px 0;border-top:1px solid var(--hair)}
+.mstep:first-child{border-top:none;padding-top:0}
+.mstep .n{font-family:var(--mono);font-size:.72rem;color:var(--sage);flex:none;width:28px;padding-top:5px;letter-spacing:.06em}
+.mstep h4{font-size:1.15rem;margin-bottom:6px}
+.mstep p{font-size:.95rem;color:var(--ink-3);line-height:1.45}
+
+/* EVIDENCE TIERS */
+.tiers{display:flex;flex-direction:column;gap:16px}
+.tier{border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(26px,3.4vw,40px);position:relative;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.005))}
+.tier .flag{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.tier .badge{font-family:var(--mono);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;padding:6px 12px;border-radius:var(--pill)}
+.tier .strength{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);display:inline-flex;align-items:center;gap:8px}
+.tier h3{font-size:var(--t-h3)}
+.tier p{margin-top:12px;font-size:1.02rem;color:var(--ink-2);max-width:70ch;line-height:1.5}
+.tier .cite{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.tier .cite a,.tier .cite span{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);border:1px solid var(--hair);padding:6px 11px;border-radius:8px;transition:.2s}
+.tier .cite a:hover{color:var(--ink);border-color:var(--ink-3)}
+.tier .meter{position:absolute;top:0;left:0;bottom:0;width:3px}
+.tier.t1{border-color:rgba(198,154,78,.34)}
+.tier.t1 .meter{background:linear-gradient(180deg,var(--gold),transparent)}
+.tier.t1 .badge{background:rgba(198,154,78,.14);color:var(--gold)}
+.tier.t2 .meter{background:linear-gradient(180deg,var(--cyan),transparent)}
+.tier.t2 .badge{background:rgba(70,230,255,.12);color:var(--cyan)}
+.tier.t3{border-style:dashed}
+.tier.t3 .meter{background:linear-gradient(180deg,var(--ink-4),transparent)}
+.tier.t3 .badge{background:rgba(129,136,151,.14);color:var(--ink-3)}
+.dots{display:inline-flex;gap:4px}.dots i{width:6px;height:6px;border-radius:50%;background:var(--ink-4)}
+.dots.d3 i:nth-child(-n+3){background:var(--gold)}.dots.d2 i:nth-child(-n+2){background:var(--cyan)}.dots.d1 i:nth-child(-n+1){background:var(--ink-3)}
+.honest{margin-top:22px;border:1px solid var(--hair);border-radius:var(--r);padding:22px 26px;background:rgba(198,154,78,.05);display:flex;gap:16px;align-items:flex-start}
+.honest svg{width:20px;height:20px;color:var(--gold);flex:none;margin-top:3px}
+.honest p{font-size:.98rem;color:var(--ink-2);line-height:1.5}.honest b{color:var(--ink)}
+
+/* STEPS (light) */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.step{padding-top:26px;border-top:1.5px solid var(--sage)}
+.step .n{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--sage-deep)}
+.step h4{font-size:1.3rem;margin:12px 0 8px;letter-spacing:-.02em}
+.step p{font-size:.94rem;color:var(--ink-3);line-height:1.45}
+.step .t{font-family:var(--mono);font-size:.66rem;color:var(--ink-4);margin-top:14px;letter-spacing:.05em}
+
+/* SCREEN (light) */
+.screen{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,72px);align-items:center}
+@media(max-width:840px){.screen{grid-template-columns:1fr}}
+.screen .panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(28px,3.6vw,44px);box-shadow:var(--shadow)}
+.screen .panel h4{font-size:1.35rem;margin-bottom:18px;letter-spacing:-.02em}
+.screen ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:15px}
+.screen li{display:flex;gap:13px;font-size:1rem;color:var(--clay-2)}
+.screen li svg{width:20px;height:20px;color:var(--sage-deep);flex:none;margin-top:2px}
+
+/* MENU (light) */
+.intro{background:linear-gradient(100deg,var(--sage-deep),#3d5136);color:#f4f6f1;border-radius:var(--r-lg);
+  padding:clamp(26px,3.4vw,40px) clamp(28px,4vw,52px);display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;
+  margin-bottom:28px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.intro::after{content:"";position:absolute;top:-60%;right:-4%;width:44%;height:220%;background:radial-gradient(circle,rgba(198,154,78,.32),transparent 62%)}
+.intro .t{position:relative}
+.intro .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,246,241,.72)}
+.intro h3{color:#fff;font-size:var(--t-h3);margin-top:8px;letter-spacing:-.025em}
+.intro .btn{position:relative;background:#fff;color:var(--sage-deep)}
+.intro .btn:hover{box-shadow:0 16px 40px -14px rgba(0,0,0,.4)}
+.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:920px){.menu{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.menu{grid-template-columns:1fr}}
+.plan{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:30px 26px;display:flex;flex-direction:column;position:relative;transition:transform .5s cubic-bezier(.2,.9,.25,1),box-shadow .4s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.plan.feat{border-color:var(--sage);box-shadow:0 0 0 1.5px var(--sage),var(--shadow)}
+.plan .pop{position:absolute;top:-12px;left:26px;background:var(--sage-deep);color:#fff;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:var(--pill)}
+.plan .pn{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.plan .pr{font-size:2.7rem;color:var(--ink);letter-spacing:-.04em;margin:16px 0 2px;line-height:1;font-weight:600}
+.plan .pr small{font-size:1rem;color:var(--ink-3);font-weight:500;letter-spacing:-.01em}
+.plan .per{font-family:var(--mono);font-size:.74rem;color:var(--sage-deep);letter-spacing:.02em}
+.plan .pd{font-size:.9rem;color:var(--ink-3);margin:16px 0 22px;flex:1;line-height:1.45}
+.plan .btn{width:100%;justify-content:center;font-size:.95rem;padding:13px}
+.plan .ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+.plan .ghost:hover{border-color:var(--sage-deep);color:var(--sage-deep)}
+.mnote{margin-top:20px;font-size:.84rem;color:var(--ink-3)}
+
+/* PEOPLE (light) */
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:840px){.people{grid-template-columns:1fr}}
+.person{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:30px;box-shadow:var(--shadow)}
+.person .pic{width:58px;height:58px;border-radius:50%;position:relative;margin-bottom:16px;
+  background:conic-gradient(from 140deg,var(--sage),var(--gold),var(--sage))}
+.person .pic::after{content:attr(data-i);position:absolute;inset:3px;border-radius:50%;background:var(--bone);display:grid;place-items:center;font-family:var(--mono);color:var(--sage-deep);font-size:.9rem}
+.person .nm{font-size:1.25rem;color:var(--ink);letter-spacing:-.02em;font-weight:600}
+.person .role{font-family:var(--mono);font-size:.72rem;color:var(--sage-deep);letter-spacing:.02em;margin-top:3px}
+.person p{font-size:.94rem;color:var(--ink-3);margin-top:12px;line-height:1.45}
+
+/* QUOTES (light) */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:840px){.quotes{grid-template-columns:1fr}}
+.quote{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;box-shadow:var(--shadow)}
+.quote .st{color:var(--gold);letter-spacing:2px;font-size:.9rem}
+.quote p{font-family:var(--serif);font-size:1.22rem;line-height:1.45;color:var(--ink);margin:16px 0 18px;font-weight:500;letter-spacing:-.01em}
+.quote .who{font-family:var(--mono);font-size:.74rem;color:var(--ink-3);letter-spacing:.02em}
+
+/* VISIT (light) */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,68px);align-items:center}
+@media(max-width:840px){.visit{grid-template-columns:1fr}}
+.vmap{aspect-ratio:4/3;border-radius:var(--r-lg);border:1px solid var(--line);overflow:hidden;position:relative;background:linear-gradient(135deg,#ebe5d6,#e0d9c7);box-shadow:var(--shadow)}
+.vmap .g{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;opacity:.7}
+.vmap .road{position:absolute;background:#d2cab5}
+.vmap .r1{top:40%;left:-5%;width:110%;height:15px;transform:rotate(-7deg)}
+.vmap .r2{top:-5%;left:58%;width:15px;height:110%;transform:rotate(6deg)}
+.vmap .pin{position:absolute;top:40%;left:60%;width:28px;height:28px;border-radius:50% 50% 50% 0;background:var(--sage-deep);transform:translate(-50%,-100%) rotate(-45deg);box-shadow:0 8px 18px -6px rgba(50,40,20,.5)}
+.vmap .pin::after{content:"";position:absolute;inset:8px;background:var(--bone);border-radius:50%}
+.vmap .pulse{position:absolute;top:40%;left:60%;width:28px;height:28px;border-radius:50%;transform:translate(-50%,-50%);background:rgba(78,101,73,.34);animation:vp 2.6s ease-out infinite}
+@keyframes vp{0%{transform:translate(-50%,-50%) scale(.6);opacity:.8}100%{transform:translate(-50%,-50%) scale(3.2);opacity:0}}
+.vdetail dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4);margin-top:22px}
+.vdetail dd{margin:6px 0 0;font-size:1.05rem;color:var(--ink)}
+.vdetail dd:first-of-type{margin-top:0}
+
+/* FAQ (light) */
+.faq{max-width:840px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:24px 44px 24px 0;position:relative;font-size:1.22rem;color:var(--ink);font-weight:600;letter-spacing:-.02em;transition:color .2s}
+.faq summary:hover{color:var(--sage-deep)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:8px;top:50%;width:13px;height:13px;
+  background:linear-gradient(var(--sage-deep),var(--sage-deep)) center/13px 1.5px no-repeat,linear-gradient(var(--sage-deep),var(--sage-deep)) center/1.5px 13px no-repeat;transition:transform .3s;transform:translateY(-50%)}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(135deg)}
+.faq .a{padding:0 40px 24px 0;font-size:1rem;color:var(--ink-3);line-height:1.6}
+
+/* FINAL CTA */
+.final{text-align:center;position:relative}
+.final h2{font-size:var(--t-hero);letter-spacing:-.045em;line-height:.92}
+.final .sub{margin:26px auto 0;max-width:44ch;font-size:var(--t-lead);color:var(--ink-2);font-weight:400;letter-spacing:-.015em}
+.final .cta{margin-top:38px;display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.final .ph{margin-top:22px;font-family:var(--mono);font-size:.78rem;color:var(--ink-3);letter-spacing:.03em}
+
+/* FOOTER */
+footer{border-top:1px solid var(--hair);padding-block:56px 42px}
+.fgrid{display:flex;justify-content:space-between;gap:44px;flex-wrap:wrap}
+.fnote{max-width:48ch;font-size:.82rem;color:var(--ink-4);line-height:1.7;margin-top:18px}
+.fcols{display:flex;gap:56px;flex-wrap:wrap}
+.fcol h5{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin:0 0 15px}
+.fcol a{display:block;font-size:.92rem;color:var(--ink-2);margin-bottom:10px;transition:.2s}
+.fcol a:hover{color:var(--ink)}
+.fbot{margin-top:46px;padding-top:26px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;color:var(--ink-4);letter-spacing:.02em}
+
+/* MOBILE BOOK BAR */
+.bookbar{position:fixed;bottom:0;left:0;right:0;z-index:49;display:none;align-items:center;justify-content:space-between;gap:14px;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(8,10,14,.86);backdrop-filter:blur(18px);border-top:1px solid var(--hair)}
+.bookbar .p{font-size:.85rem;color:var(--ink-2)}.bookbar .p b{color:var(--ink);font-size:1.05rem;font-weight:600}
+@media(max-width:920px){.bookbar{display:flex}main{padding-bottom:74px}}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.16,.8,.24,1),transform 1s cubic-bezier(.16,.8,.24,1);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero .l,.hero .lead,.hero .cta,.hero .risk,.hero .eyebrow,.scrollcue{animation:none;opacity:1;transform:none}
+  .scrollcue .bar::after,.vmap .pulse,.pulseorb,.breathe .ring{animation:none}
+}
+
+/* OVERLAY */
+.overlay{position:fixed;inset:0;z-index:100;display:none;background:#050608}
+.overlay.open{display:block}
+#sc{position:absolute;inset:0;width:100%;height:100%}
+.ovui{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,4vw,46px);pointer-events:none;z-index:2}
+.ovui .top,.ovui .bot{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.ovui .center{text-align:center}
+.ovui .ro{font-family:var(--mono);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.ovui .sn{font-size:clamp(2rem,6vw,3.8rem);color:#fff;margin-top:12px;letter-spacing:-.03em;font-weight:600;text-shadow:0 2px 50px rgba(0,0,0,.4)}
+.ovui .hz{font-family:var(--mono);font-size:.95rem;color:rgba(255,255,255,.82);margin-top:14px;letter-spacing:.08em}
+.ovui button,.ovui .seg,.ovui a{pointer-events:auto}
+.ovclose{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82);background:rgba(0,0,0,.34);border:1px solid rgba(255,255,255,.2);padding:11px 18px;border-radius:var(--pill);cursor:pointer;backdrop-filter:blur(8px)}
+.ovclose:hover{background:rgba(0,0,0,.6);color:#fff}
+.seg{display:inline-flex;gap:4px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.16);border-radius:var(--pill);padding:5px;backdrop-filter:blur(10px)}
+.seg button{font-family:var(--mono);font-size:.74rem;color:rgba(255,255,255,.7);background:none;border:none;padding:9px 15px;border-radius:var(--pill);cursor:pointer;transition:.2s}
+.seg button.on{background:#fff;color:#07080a}
+.ovbook{display:inline-flex;align-items:center;gap:9px;background:var(--sage);color:#0c1408;border:none;font-family:var(--sans);font-weight:600;font-size:.92rem;padding:12px 20px;border-radius:var(--pill);cursor:pointer}
+.ovaudio{display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.16);border-radius:var(--pill);padding:8px 8px 8px 18px;backdrop-filter:blur(10px)}
+.ovaudio label{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.ovaudio button{font-family:var(--mono);font-size:.72rem;color:#07080a;background:#fff;border:none;padding:9px 16px;border-radius:var(--pill);cursor:pointer}
+.breathe{margin-top:30px;display:inline-flex;flex-direction:column;align-items:center;gap:14px}
+.breathe .ring{width:64px;height:64px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);animation:breatheRing 10s ease-in-out infinite}
+.breathe .txt{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+@keyframes breatheRing{0%{transform:scale(.7);opacity:.45}40%{transform:scale(1.3);opacity:1}100%{transform:scale(.7);opacity:.45}}
+.gate{position:absolute;inset:0;z-index:3;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 30%,rgba(22,26,40,.6),rgba(5,6,10,.96))}
+.gate .card2{max-width:520px;text-align:center;border:none;background:none;padding:0}
+.gate .ic{width:52px;height:52px;margin:0 auto 22px;border-radius:14px;display:grid;place-items:center;background:rgba(198,154,78,.12);border:1px solid rgba(198,154,78,.3)}
+.gate .ic svg{width:26px;height:26px;color:var(--gold)}
+.gate h3{font-size:1.7rem;color:#fff}
+.gate p{margin-top:16px;font-size:1rem;color:var(--ink-2);line-height:1.6}
+.gate .fine{margin-top:18px;font-size:.8rem;color:var(--ink-3);font-family:var(--mono);line-height:1.7}
+.gate .gb{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.gate .gcancel{background:none;border:1px solid var(--hair-2);color:var(--ink-2)}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<canvas id="orb"></canvas>
+<div class="grain"></div>
+<div class="veil"></div>
+
+<nav class="nav" id="nav">
+  <div class="wrap row">
+    <a class="brand" href="#top"><span class="mark"></span><span>Sage<small>Lightwork · powered by roXiva</small></span></a>
+    <div class="nav-links">
+      <a href="#types">Sessions</a>
+      <a href="#visit-flow">Your visit</a>
+      <a href="#science">The science</a>
+      <a href="#menu">Pricing</a>
+      <a href="#visit">Find us</a>
+    </div>
+    <a class="btn btn-primary btn-sm magnetic" href="#menu">Book · $49</a>
+  </div>
+</nav>
+<a class="btn btn-primary bookpill magnetic" href="#menu" id="bookpill">Book your first session · $49</a>
+
+<main id="top">
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="inner">
+    <span class="eyebrow">Light therapy sessions at Sage · powered by roXiva</span>
+    <h1><span class="l">Change your brain.</span><span class="l spectrum-text">Change your life.</span></h1>
+    <p class="lead">For thousands of years people chased a changed mind through plant medicine, ritual, and years on a cushion. Light gets you there in twenty minutes. You close your eyes, and guided light and sound move your brain into deep calm, clean focus, or a waking dream. Sober. Screened by our clinical team. Clear to drive when you leave.</p>
+    <div class="cta">
+      <a class="btn btn-primary magnetic" href="#menu">Book your first session · $49</a>
+      <button class="btn btn-secondary" data-open-session>Feel it now <span class="arw">→</span></button>
+    </div>
+    <div class="risk">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Screened by our clinical team</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>~20 minutes</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Drive home after</span>
+    </div>
+  </div>
+  <div class="scrollcue"><span class="bar"></span>Enter</div>
+</header>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="row">
+    <div class="st"><div class="n"><span class="count" data-to="4.9" data-dec="1">0</span></div><div class="k">Average visit rating</div></div>
+    <div class="st"><div class="n"><span class="count" data-to="200">0</span><span class="u">+</span></div><div class="k">Sessions delivered</div></div>
+    <div class="st"><div class="n"><span class="count" data-to="20">0</span><span class="u"> min</span></div><div class="k">A typical session</div></div>
+    <div class="st"><div class="n"><span class="count" data-to="0">0</span><span class="u"> substances</span></div><div class="k">Sober, legal, repeatable</div></div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="section">
+  <div class="wrap narrow statement reveal">
+    <p>Psychedelics do it. Meditation does it. Ritual, drumming, fasting, prayer. <span class="mut">Every one of them does a single thing. It changes the rhythm running through your brain.</span></p>
+    <p class="sub">That rhythm is the whole game. It decides whether you feel wired or calm, foggy or sharp, stuck or wide open. Light reaches it directly. Precise flicker and sound gently pull your brainwaves into the state you came for, then let you go. No plant. No risk. No decade of practice. You close your eyes, and the light does the rest.</p>
+  </div>
+</section>
+
+<!-- SESSION TYPES -->
+<section class="section" id="types">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Choose your state</span>
+      <h2>Pick the state. The light does the rest.</h2>
+      <p>Every visit is one guided session tuned to a single state: the stillness of deep meditation, the edge of clean focus, the awe of a journey. New here? Tell us how you want to feel and we'll pick for you.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal" data-hue="190" style="--g1:rgba(70,230,255,.5)"><span class="dur">~20 min</span><span class="f">Alpha · calm</span><h4>Calm &amp; Reset</h4><p>The unhurried calm people fly to a retreat for. Yours in twenty minutes.</p><a class="go" href="#menu">Book this <span class="arw">→</span></a></div>
+      <div class="card reveal" data-hue="35" style="--g1:rgba(255,178,77,.5)"><span class="dur">~15 min</span><span class="f">40 Hz · gamma</span><h4>Focus &amp; Clarity</h4><p>The lit up, single pointed focus of a mind fully switched on. For the day that matters.</p><a class="go" href="#menu">Book this <span class="arw">→</span></a></div>
+      <div class="card reveal" data-hue="262" style="--g1:rgba(139,108,255,.55)"><span class="dur">~25 min</span><span class="f">Journey</span><h4>The Journey</h4><p>The visions and the awe of a psychedelic. Sober, legal, and finished in half an hour.</p><a class="go" href="#menu">Book this <span class="arw">→</span></a></div>
+      <div class="card reveal" data-hue="222" style="--g1:rgba(91,124,255,.5)"><span class="dur">~30 min</span><span class="f">Delta · sleep</span><h4>Deep Sleep Prep</h4><p>The slow, warm descent your brain follows down into real sleep. Evenings only.</p><a class="go" href="#menu">Book this <span class="arw">→</span></a></div>
+      <div class="card reveal" data-hue="152" style="--g1:rgba(91,224,166,.5)"><span class="dur">~20 min</span><span class="f">Theta · recovery</span><h4>Recovery</h4><p>The deep drop that pulls you out of stress, burnout, and overload.</p><a class="go" href="#menu">Book this <span class="arw">→</span></a></div>
+      <div class="card reveal" data-hue="330" style="--g1:rgba(255,90,163,.5)"><span class="dur">~20 min</span><span class="f">Meditation</span><h4>Stillness</h4><p>The depth a lifelong meditator finds on the cushion, without the lifetime.</p><a class="go" href="#menu">Book this <span class="arw">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE INVITE -->
+<section class="section">
+  <div class="wrap">
+    <div class="invite reveal">
+      <div class="pulseorb"></div>
+      <h3>Don't take our word for it. Feel it.</h3>
+      <p>A gentle, safety limited preview runs right here in your browser. A fraction of what the room does, but enough to feel your own brain start to follow the light.</p>
+      <button class="btn btn-primary magnetic" data-open-session>Feel a session now <span class="arw">→</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section class="section" id="science">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">The science under the session</span>
+      <h2>What ritual stumbled onto, we can now measure.</h2>
+      <p>Firelight, a strobe, a drum circle: they all nudge the brain by accident. The RX1 does it on purpose, at a precise frequency, session after session. Sage is a medical clinic, so we tier every claim by how strong the evidence actually is. Established, emerging, and experiential, told straight.</p>
+    </div>
+
+    <div class="mech" style="margin-bottom:clamp(48px,7vw,86px)">
+      <div class="wavebox reveal">
+        <div class="wl"><span>Cortical response</span><span id="bandName">Alpha · calm</span></div>
+        <div class="big" id="hzBig">10.0<span>&nbsp;Hz</span></div>
+        <canvas id="wave" width="720" height="400"></canvas>
+        <input type="range" id="freq" min="2" max="40" step="0.5" value="10" aria-label="Stimulation frequency" />
+        <div class="brow"><b>2 Hz</b><span>drag to tune the driving frequency</span><b>40 Hz</b></div>
+        <div class="chips" id="presets">
+          <button class="chip" data-f="3">Delta 3</button>
+          <button class="chip" data-f="6">Theta 6</button>
+          <button class="chip on" data-f="10">Alpha 10</button>
+          <button class="chip" data-f="13">Beta 13</button>
+          <button class="chip" data-f="40">Gamma 40</button>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="mstep"><span class="n">01</span><div><h4>Drive</h4><p>Pulsed light and synchronised sound at a chosen frequency. The rhythm is the active ingredient.</p></div></div>
+        <div class="mstep"><span class="n">02</span><div><h4>Entrain</h4><p>Your cortex begins to phase-lock to the pulse, a measurable steady-state response at that frequency.</p></div></div>
+        <div class="mstep"><span class="n">03</span><div><h4>Guide</h4><p>The session moves the frequency over time, so the experience has an arc, not just a setting.</p></div></div>
+        <div class="mstep"><span class="n">04</span><div><h4>Return</h4><p>The state fades cleanly when the light stops. Nothing to metabolise. Repeatable next week.</p></div></div>
+      </div>
+    </div>
+
+    <div class="tiers">
+      <article class="tier t1 reveal"><span class="meter"></span>
+        <div class="flag"><span class="badge">Tier 1 · Established</span><span class="strength">Evidence <span class="dots d3"><i></i><i></i><i></i></span></span></div>
+        <h3>40&nbsp;Hz gamma stimulation drives real neurophysiology.</h3>
+        <p>At MIT, the Tsai lab showed 40&nbsp;Hz sensory flicker entrains cortical gamma and, in animal models, clears amyloid-beta by driving glymphatic flow, an effect specific to 40&nbsp;Hz. The steady-state visual response to flicker is textbook, replicated neuroscience. This is the strongest ground in the field.</p>
+        <div class="cite"><a href="https://pubmed.ncbi.nlm.nih.gov/27929004/" target="_blank" rel="noopener">Nature 2016 · Tsai lab</a><a href="https://www.nature.com/articles/s41586-024-07132-6" target="_blank" rel="noopener">Nature 2024 · glymphatic</a><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4581566/" target="_blank" rel="noopener">J. Vision 2015 · SSVEP</a></div>
+      </article>
+      <article class="tier t2 reveal"><span class="meter"></span>
+        <div class="flag"><span class="badge">Tier 2 · Emerging</span><span class="strength">Evidence <span class="dots d2"><i></i><i></i><i></i></span></span></div>
+        <h3>For mood, focus and anxiety, the trials are promising but mixed.</h3>
+        <p>A 2024 double-blind RCT in <em>Nature Scientific Reports</em> (n=262) found a five-minute audio-visual session matched or beat twenty-two minutes of meditation on anxiety, depression and cognition. The honest caveats: several supporting studies are industry-funded and effect sizes vary. Promising is not the same as proven.</p>
+        <div class="cite"><a href="https://www.nature.com/articles/s41598-024-75943-8" target="_blank" rel="noopener">Nature Sci Reports 2024</a><a href="https://journals.plos.org/mentalhealth/article?id=10.1371/journal.pmen.0000355" target="_blank" rel="noopener">PLOS Mental Health 2026</a></div>
+      </article>
+      <article class="tier t3 reveal"><span class="meter"></span>
+        <div class="flag"><span class="badge">Tier 3 · Experiential</span><span class="strength">Evidence <span class="dots d1"><i></i><i></i><i></i></span></span></div>
+        <h3>The "sober psychedelic" journey is remarkable to feel, and under-studied.</h3>
+        <p>Stroboscopic light produces vivid altered states, documented since the 1950s and explored today by Anil Seth's team at Sussex. What doesn't yet exist is placebo-controlled evidence of durable change, some key work is still a preprint. We think it's extraordinary. We won't dress it up as a clinical outcome.</p>
+        <div class="cite"><a href="https://www.bps.org.uk/psychologist/dreamachine-collective-experience-built-blow-your-mind" target="_blank" rel="noopener">Dreamachine · Sussex</a><span>Schwartzman 2019 · preprint</span></div>
+      </article>
+    </div>
+    <div class="honest reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+      <p><b>The technology's own honest footnote.</b> Cognito Therapeutics' Phase 2 trial of home 40&nbsp;Hz stimulation <b>missed its primary endpoint</b> while hitting several secondary measures; Phase 3 is fully enrolled. Most marketing never mentions the miss. We do, because the people we want at Sage are the kind who check.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT (light) -->
+<section class="section light" id="visit-flow">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Your first visit</span>
+      <h2>Never done this? Here's exactly how it goes.</h2>
+      <p>No preparation, no technique to learn. Wear what's comfortable and arrive a few minutes early.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="n">STEP 01</span><h4>Book &amp; screen</h4><p>Choose a time online. Before your first session our clinical team runs a short safety screening.</p><div class="t">~5 min · once</div></div>
+      <div class="step reveal"><span class="n">STEP 02</span><h4>Arrive &amp; settle</h4><p>Recline in a zero-gravity chair in a private, dimmed room. Eyes closed, headphones on.</p><div class="t">a few minutes</div></div>
+      <div class="step reveal"><span class="n">STEP 03</span><h4>The session</h4><p>Light and sound do the work. No concentrating, no trying, just let the rhythm carry you.</p><div class="t">15–30 min</div></div>
+      <div class="step reveal"><span class="n">STEP 04</span><h4>Integrate &amp; go</h4><p>A few quiet minutes, a glass of water, and you're clear to drive. Most feel it all day.</p><div class="t">~5 min</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY (light) -->
+<section class="section light" id="safety">
+  <div class="wrap">
+    <div class="screen">
+      <div class="reveal">
+        <span class="eyebrow">Safety, without spin</span>
+        <h2 style="font-size:var(--t-h2);margin-top:22px">Powerful enough to work. Which is why we screen.</h2>
+        <p class="lead" style="margin-top:20px;max-width:44ch">Some devices call themselves "totally safe." The science doesn't support that, so we won't say it. Flickering light affects a small number of people, and Sage's advantage over a device bought online is simple: <b style="color:var(--ink)">a clinician screens you first.</b></p>
+        <p class="small" style="margin-top:16px">The strongest-evidence frequency, 40&nbsp;Hz, sits outside the highest-risk 15–25&nbsp;Hz band, and even the browser preview here avoids it.</p>
+      </div>
+      <div class="panel reveal">
+        <h4>Before your first session, we check</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Any history of seizures or photosensitive epilepsy</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Pregnancy or serious neurological conditions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Medications and relevant medical history</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>The right session and intensity for you</li>
+        </ul>
+        <p class="small" style="margin-top:22px">If a session isn't right for you, we'll say so, and point you to something at Sage that is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU (light) -->
+<section class="section light" id="menu">
+  <div class="wrap">
+    <div class="shead c reveal">
+      <span class="eyebrow c">Book a session</span>
+      <h2>Simple pricing. Start with one.</h2>
+      <p>Come once at the intro rate. Most people know inside a single session. After that, a pack or a membership drops the price of every visit.</p>
+    </div>
+    <div class="intro reveal">
+      <div class="t"><span class="k">New to Sage</span><h3>Your first light therapy session, $49</h3></div>
+      <a class="btn magnetic" href="[book.sageclinic.com]">Claim the intro rate <span class="arw">→</span></a>
+    </div>
+    <div class="menu">
+      <div class="plan reveal"><span class="pn">Single session</span><div class="pr">$89</div><div class="per">per visit · 15–30 min</div><p class="pd">One guided session, any state you like. A reset for whenever the week gets loud.</p><a class="btn ghost" href="[book.sageclinic.com]">Book a session</a></div>
+      <div class="plan feat reveal"><span class="pop">Most popular</span><span class="pn">5-session pack</span><div class="pr">$375</div><div class="per">$75 / session · save $70</div><p class="pd">Enough visits to feel it stack. Calmer weeks, better sleep, sharper days. Sessions never expire.</p><a class="btn btn-primary" href="[book.sageclinic.com]">Choose 5-pack</a></div>
+      <div class="plan reveal"><span class="pn">10-session pack</span><div class="pr">$650</div><div class="per">$65 / session · save $240</div><p class="pd">A real protocol for sleep, stress, or focus, worked over a few weeks. Your lowest per visit price.</p><a class="btn ghost" href="[book.sageclinic.com]">Choose 10-pack</a></div>
+      <div class="plan reveal"><span class="pn">Membership</span><div class="pr">$129<small>/mo</small></div><div class="per">2 sessions + member rates</div><p class="pd">Two sessions every month, priority booking, and member pricing on anything extra.</p><a class="btn ghost" href="[book.sageclinic.com]">Become a member</a></div>
+    </div>
+    <p class="mnote reveal">Illustrative pricing. Sage sets final rates. HSA/FSA eligibility and gift cards available where applicable.</p>
+  </div>
+</section>
+
+<!-- PEOPLE (light) -->
+<section class="section light">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Who you'll meet</span>
+      <h2>Run by Sage's own clinical team.</h2>
+      <p>Not a machine in a hallway. Real practitioners who screen you, set your session, and are there if you need them.</p>
+    </div>
+    <div class="people">
+      <div class="person reveal"><span class="pic" data-i=""></span><div class="nm">[Practitioner Name]</div><div class="role">[Credential · e.g. RN, Wellness Lead]</div><p>[One line on their background and what they help clients with.]</p></div>
+      <div class="person reveal"><span class="pic" data-i=""></span><div class="nm">[Practitioner Name]</div><div class="role">[Credential]</div><p>[One line on the clients they most often work with.]</p></div>
+      <div class="person reveal"><span class="pic" data-i=""></span><div class="nm">[Practitioner Name]</div><div class="role">[Credential]</div><p>[One line on their focus, recovery, anxiety, sober-curious support.]</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES (light) -->
+<section class="section light">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">In their words</span>
+      <h2>What it feels like, from the chair.</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal"><div class="st">★★★★★</div><p>"Twenty minutes and I felt like I'd had the best nap of my life, without falling asleep. I booked the 5-pack on the way out."</p><div class="who">[Client name] · Calm &amp; Reset</div></div>
+      <div class="quote reveal"><div class="st">★★★★★</div><p>"I stopped drinking last year and missed having a thing to look forward to. The Journey gives me that, completely sober."</p><div class="who">[Client name] · The Journey</div></div>
+      <div class="quote reveal"><div class="st">★★★★★</div><p>"I do a Focus session before big work days now. Calmer and sharper at once, I didn't think that combination existed."</p><div class="who">[Client name] · Focus &amp; Clarity</div></div>
+    </div>
+    <p class="small reveal" style="margin-top:20px;font-style:italic">Illustrative reviews, replace with real Sage client testimonials before publishing.</p>
+  </div>
+</section>
+
+<!-- VISIT (light) -->
+<section class="section light" id="visit">
+  <div class="wrap">
+    <div class="visit">
+      <div class="vmap reveal" aria-hidden="true"><div class="g"></div><div class="road r1"></div><div class="road r2"></div><div class="pulse"></div><div class="pin"></div></div>
+      <div class="reveal">
+        <span class="eyebrow">Find us</span>
+        <h2 style="font-size:var(--t-h2);margin-top:22px">Ten minutes from you, most likely.</h2>
+        <dl class="vdetail">
+          <dt>Location</dt><dd>Sage Medical + Wellness</dd><dd>[123 Example Street, Suite 4]</dd><dd>[Your City, ST 00000]</dd>
+          <dt>Hours</dt><dd style="font-variant-numeric:tabular-nums">[Mon–Fri 9–7 · Sat 9–3 · Sun closed]</dd>
+          <dt>Book</dt><dd>[(555) 000-0000] · [book.sageclinic.com]</dd>
+        </dl>
+        <div style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary magnetic" href="[book.sageclinic.com]">Book a session</a>
+          <button class="btn btn-secondary" data-open-session>Try a preview first</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ (light) -->
+<section class="section light">
+  <div class="wrap">
+    <div class="shead c reveal"><span class="eyebrow c">Before you book</span><h2>The questions first-timers ask.</h2></div>
+    <div class="faq reveal">
+      <details><summary>Is it safe?</summary><div class="a">For most people, yes. The main consideration is photosensitive epilepsy (about 1 in 4,000 people), which is exactly why every first visit begins with a clinical screening. If you have a seizure disorder, are pregnant, or have a serious neurological condition, tell us, we'll advise honestly and may recommend something else at Sage.</div></details>
+      <details><summary>Will I actually feel something?</summary><div class="a">Almost everyone does, from the first session. With your eyes closed the light creates vivid colour and movement, and the shift, calmer, clearer, deeply relaxed, is usually obvious by the time you stand up. Depth grows with repeat sessions.</div></details>
+      <details><summary>Is this like taking a psychedelic?</summary><div class="a">The Journey session can produce genuinely psychedelic-like visuals and altered states, sober, legal, and over in about twenty minutes. Be clear-eyed about the evidence: we place that experience in our most experiential tier. It's remarkable to feel; it is not a substitute for medical treatment.</div></details>
+      <details><summary>What do I wear, and what do I bring?</summary><div class="a">Just wear something comfortable. You'll recline with your eyes closed and headphones on, nothing to bring or prepare. Arrive a few minutes early for your first visit so we can complete your screening.</div></details>
+      <details><summary>Can I drive afterwards?</summary><div class="a">Yes. There's nothing in your system, the effect is your own nervous system settling, and it fades cleanly. We build in a few quiet minutes so you leave grounded and clear to drive.</div></details>
+      <details><summary>How often should I come?</summary><div class="a">Once is a real experience on its own. For a lasting shift in sleep, stress or focus, most people do a short series, which is why the 5-pack and membership exist. Your practitioner will suggest a cadence.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section final" id="book">
+  <div class="wrap narrow reveal">
+    <span class="eyebrow c" style="display:flex;justify-content:center">The oldest pursuit · the newest door</span>
+    <h2 style="margin-top:24px">Change your brain.<br><span class="spectrum-text">Change your life.</span></h2>
+    <p class="sub">People have crossed deserts and swallowed strange plants to feel what a Sage session gives you in twenty minutes. Sober, screened, and over before your parking runs out.</p>
+    <div class="cta">
+      <a class="btn btn-primary magnetic" href="[book.sageclinic.com]">Book your first session · $49</a>
+      <button class="btn btn-secondary" data-open-session>Feel it now <span class="arw">→</span></button>
+    </div>
+    <p class="ph">Or call us, [(555) 000-0000]</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="brand" href="#top" style="font-size:1.5rem"><span class="mark"></span><span>Sage<small>Lightwork · powered by roXiva</small></span></a>
+        <p class="fnote">Lightwork sessions at Sage Medical + Wellness, guided audio-visual entrainment for calm, focus, sleep and sober exploration. Sessions are a general wellness service, not a medical treatment, and do not diagnose or cure any condition. Every first visit includes a clinical safety screening.</p>
+      </div>
+      <div class="fcols">
+        <div class="fcol"><h5>Sessions</h5><a href="#types">Session types</a><a href="#visit-flow">Your first visit</a><a href="#menu">Pricing</a><a href="#" data-open-session>Try a preview</a></div>
+        <div class="fcol"><h5>Trust</h5><a href="#science">The science</a><a href="#safety">Safety &amp; screening</a><a href="#visit">Find us</a></div>
+        <div class="fcol"><h5>Sage</h5><a href="#">About the clinic</a><a href="#">All services</a><a href="#book">Book online</a><a href="#">Contact</a></div>
+      </div>
+    </div>
+    <div class="fbot"><span>© 2026 Sage Medical + Wellness · concept page</span><span>Consult a physician before booking if you have a seizure disorder, are pregnant, or have a serious neurological condition.</span></div>
+  </div>
+</footer>
+
+</main>
+
+<div class="bookbar"><div class="p">First session <b>$49</b></div><a class="btn btn-primary btn-sm" href="#menu">Book now</a></div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" aria-hidden="true">
+  <canvas id="sc"></canvas>
+  <div class="gate" id="gate">
+    <div class="card2">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+      <h3>A quick, honest safety check</h3>
+      <p>This preview uses gentle pulsing light and sound, kept in low-risk frequency ranges at low intensity, but flickering light can affect a small number of people.</p>
+      <p class="fine">Do not continue if you have photosensitive epilepsy or another seizure disorder, are pregnant, or feel unwell. Keep the volume moderate and stop if you feel discomfort. This is a demonstration, not a Sage session.</p>
+      <div class="gb"><button class="btn btn-primary" id="gateGo">I understand, begin</button><button class="btn gcancel" id="gateCancel">Not now</button></div>
+    </div>
+  </div>
+  <div class="ovui hidden" id="ovUI">
+    <div class="top">
+      <div class="seg" id="ovPresets">
+        <button data-f="6" data-name="Dream" data-c="violet">Dream · 6 Hz</button>
+        <button class="on" data-f="10" data-name="Calm" data-c="cyan">Calm · 10 Hz</button>
+        <button data-f="40" data-name="Clarity" data-c="amber">Clarity · 40 Hz</button>
+      </div>
+      <button class="ovclose" id="ovClose">✕ &nbsp;End preview</button>
+    </div>
+    <div class="center"><div class="ro">Entraining · eyes soft, breathe slow</div><div class="sn" id="ovState">Calm</div><div class="hz" id="ovHz">10.0 Hz · alpha</div>
+      <div class="breathe"><span class="ring"></span><span class="txt">Breathe with the ring</span></div>
+    </div>
+    <div class="bot"><div class="ovaudio"><label>Sound</label><button id="ovAudio">Turn on</button></div><a class="ovbook" href="#menu" id="ovBook">This is a taste, book the real thing →</a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var fine=window.matchMedia&&window.matchMedia('(pointer:fine)').matches;
+
+  /* hero ready */
+  var hero=document.getElementById('hero');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){hero.classList.add('ready');});});
+
+  /* nav hide/show + scrolled + bookpill */
+  var nav=document.getElementById('nav'),pill=document.getElementById('bookpill'),lastY=window.scrollY,ticking=false;
+  function nscroll(){
+    var y=window.scrollY;
+    nav.classList.toggle('scrolled',y>30);
+    if(y>lastY&&y>560) nav.classList.add('hide'); else nav.classList.remove('hide');
+    pill.classList.toggle('show', y>window.innerHeight*0.9);
+    lastY=y; ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(nscroll);ticking=true;}},{passive:true}); nscroll();
+
+  /* reveal with stagger by sibling index */
+  var revs=[].slice.call(document.querySelectorAll('.reveal'));
+  revs.forEach(function(el){
+    if(!el.parentElement)return;
+    var sibs=[].slice.call(el.parentElement.children).filter(function(c){return c.classList.contains('reveal');});
+    var i=sibs.indexOf(el); if(i>0) el.style.setProperty('--d',(i*80)+'ms');
+  });
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -7% 0px'});
+    revs.forEach(function(r){io.observe(r);});
+  } else revs.forEach(function(r){r.classList.add('in');});
+
+  /* count-up */
+  function animCount(el){
+    var to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||'0',10),dur=1400,t0=null;
+    function step(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/dur);var e=1-Math.pow(1-p,3);el.textContent=(to*e).toFixed(dec);if(p<1)requestAnimationFrame(step);else el.textContent=to.toFixed(dec);}
+    requestAnimationFrame(step);
+  }
+  var counts=[].slice.call(document.querySelectorAll('.count'));
+  if('IntersectionObserver' in window && !reduce){
+    var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){animCount(e.target);cio.unobserve(e.target);}});},{threshold:0.6});
+    counts.forEach(function(c){cio.observe(c);});
+  } else counts.forEach(function(c){c.textContent=parseFloat(c.dataset.to).toFixed(parseInt(c.dataset.dec||'0',10));});
+
+  /* magnetic buttons */
+  if(fine&&!reduce){
+    document.querySelectorAll('.magnetic').forEach(function(b){
+      b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();var mx=e.clientX-r.left-r.width/2,my=e.clientY-r.top-r.height/2;b.style.setProperty('--bx',(mx*0.18)+'px');b.style.setProperty('--by',(my*0.28)+'px');});
+      b.addEventListener('mouseleave',function(){b.style.setProperty('--bx','0px');b.style.setProperty('--by','0px');});
+    });
+  }
+
+  /* ORB, signature luminous hero object + ambient */
+  var orb=document.getElementById('orb'),octx=orb.getContext('2d'),ow,oh,dpr=Math.min(2,window.devicePixelRatio||1);
+  function sizeOrb(){ow=window.innerWidth;oh=window.innerHeight;orb.width=ow*dpr;orb.height=oh*dpr;orb.style.width=ow+'px';orb.style.height=oh+'px';octx.setTransform(dpr,0,0,dpr,0,0);}
+  window.addEventListener('resize',sizeOrb); sizeOrb();
+  function hsl(h,s,l,a){return 'hsla('+h+','+s+'%,'+l+'%,'+a+')';}
+  // interactivity: pointer parallax + hover-a-state-recolours-the-light
+  var orbPX=0.5,orbPY=0.46,orbPXt=0.5,orbPYt=0.46,orbHue=200,orbHueTarget=null;
+  if(fine&&!reduce){window.addEventListener('pointermove',function(e){orbPXt=e.clientX/window.innerWidth;orbPYt=e.clientY/window.innerHeight;},{passive:true});}
+  document.querySelectorAll('.card[data-hue]').forEach(function(c){
+    c.addEventListener('mouseenter',function(){orbHueTarget=parseFloat(c.dataset.hue);});
+    c.addEventListener('mouseleave',function(){orbHueTarget=null;});
+  });
+  function drawOrb(t){
+    octx.clearRect(0,0,ow,oh);
+    var autoHue=200+Math.sin(t*0.00007)*70;               // slow spectral drift
+    orbHue+=(((orbHueTarget!==null)?orbHueTarget:autoHue)-orbHue)*0.05;
+    orbPX+=(orbPXt-orbPX)*0.05; orbPY+=(orbPYt-orbPY)*0.05;
+    var cx=ow*(0.5+(orbPX-0.5)*0.06), cy=oh*(0.46+(orbPY-0.46)*0.06), base=Math.min(ow,oh);
+    var hue=orbHue;
+    var breath=0.5+0.5*Math.sin(t*0.0006);
+    octx.globalCompositeOperation='lighter';
+    // ambient companion blooms
+    var comp=[[cx-base*0.34,cy+base*0.18,hue+90],[cx+base*0.36,cy-base*0.12,hue-60]];
+    comp.forEach(function(c){var r=base*0.42;var g=octx.createRadialGradient(c[0],c[1],0,c[0],c[1],r);g.addColorStop(0,hsl(c[2],80,58,0.09));g.addColorStop(1,hsl(c[2],80,55,0));octx.fillStyle=g;octx.beginPath();octx.arc(c[0],c[1],r,0,7);octx.fill();});
+    // outer halo
+    var hr=base*(0.34+0.03*breath);
+    var hg=octx.createRadialGradient(cx,cy,0,cx,cy,hr);
+    hg.addColorStop(0,hsl(hue,85,62,0.20));hg.addColorStop(0.5,hsl(hue+30,85,58,0.07));hg.addColorStop(1,hsl(hue,85,55,0));
+    octx.fillStyle=hg;octx.beginPath();octx.arc(cx,cy,hr,0,7);octx.fill();
+    // orbiting rings
+    for(var i=0;i<3;i++){var rr=base*(0.16+i*0.05)+Math.sin(t*0.0008+i)*base*0.006;octx.strokeStyle=hsl(hue+i*40,85,66,0.05+0.03*breath);octx.lineWidth=1.4;octx.beginPath();octx.arc(cx,cy,rr,0,7);octx.stroke();}
+    // core sphere
+    var cr=base*(0.12+0.008*breath);
+    var cg=octx.createRadialGradient(cx-cr*0.28,cy-cr*0.32,cr*0.05,cx,cy,cr);
+    cg.addColorStop(0,'rgba(255,255,255,0.95)');cg.addColorStop(0.28,hsl(hue,90,80,0.85));cg.addColorStop(0.7,hsl(hue+20,85,55,0.5));cg.addColorStop(1,hsl(hue+40,80,30,0));
+    octx.fillStyle=cg;octx.beginPath();octx.arc(cx,cy,cr*1.6,0,7);octx.fill();
+    octx.globalCompositeOperation='source-over';
+  }
+  if(reduce){ drawOrb(4000); } else { (function loop(ts){drawOrb(ts);requestAnimationFrame(loop);})(0); }
+  // fade orb as you leave hero
+  window.addEventListener('scroll',function(){var f=Math.max(0.32,1-window.scrollY/(window.innerHeight*0.9));orb.style.opacity=f;},{passive:true});
+
+  /* WAVE visualizer */
+  var wave=document.getElementById('wave'),wctx=wave&&wave.getContext('2d');
+  var freqInput=document.getElementById('freq'),hzBig=document.getElementById('hzBig'),bandName=document.getElementById('bandName');
+  var curFreq=10,targetFreq=10,WW=720,WH=400;
+  function bandOf(f){if(f<4)return 'Delta · deep sleep';if(f<8)return 'Theta · meditation';if(f<13)return 'Alpha · calm';if(f<30)return 'Beta · focus';return 'Gamma · clarity';}
+  function colOf(f){if(f<4)return '#8B6CFF';if(f<8)return '#a07bff';if(f<13)return '#46E6FF';if(f<30)return '#5BE0A6';return '#FFB24D';}
+  function setF(f){targetFreq=f;document.querySelectorAll('#presets .chip').forEach(function(c){c.classList.toggle('on',parseFloat(c.dataset.f)===f);});}
+  if(freqInput){
+    freqInput.addEventListener('input',function(){targetFreq=parseFloat(this.value);document.querySelectorAll('#presets .chip').forEach(function(c){c.classList.remove('on');});});
+    document.querySelectorAll('#presets .chip').forEach(function(c){c.addEventListener('click',function(){var f=parseFloat(c.dataset.f);freqInput.value=f;setF(f);});});
+  }
+  var phase=0,wLast=0;
+  function drawWave(ts){
+    if(!wctx)return;var dt=Math.min(50,ts-wLast)||16;wLast=ts;curFreq+=(targetFreq-curFreq)*0.08;phase+=(curFreq/40)*(dt/1000)*7;
+    var f=curFreq,col=colOf(f);if(hzBig)hzBig.innerHTML=f.toFixed(1)+'<span>&nbsp;Hz</span>';if(bandName)bandName.textContent=bandOf(f);
+    wctx.clearRect(0,0,WW,WH);wctx.strokeStyle='rgba(255,255,255,.05)';wctx.lineWidth=1;
+    for(var gx=0;gx<=WW;gx+=60){wctx.beginPath();wctx.moveTo(gx,0);wctx.lineTo(gx,WH);wctx.stroke();}
+    function ser(amp,ym,fs,al,w,j){wctx.beginPath();for(var x=0;x<=WW;x+=3){var tt=x/WW;var y=ym+Math.sin(tt*Math.PI*2*fs+phase)*amp+(j?Math.sin(tt*Math.PI*2*fs*2.3+phase*1.7)*amp*.18:0);if(x===0)wctx.moveTo(x,y);else wctx.lineTo(x,y);}wctx.strokeStyle=al;wctx.lineWidth=w;wctx.stroke();}
+    var cyc=Math.max(2,f*.55);
+    wctx.shadowBlur=18;wctx.shadowColor=col;ser(WH*.24,WH*.5,cyc,col,2.4,false);wctx.shadowBlur=0;
+    ser(WH*.10,WH*.5,cyc,'rgba(255,255,255,.12)',1,true);
+    var sx=(phase*40)%WW,sy=WH*.5+Math.sin((sx/WW)*Math.PI*2*cyc+phase)*WH*.24;
+    wctx.beginPath();wctx.arc(sx,sy,4,0,7);wctx.fillStyle='#fff';wctx.shadowBlur=14;wctx.shadowColor=col;wctx.fill();wctx.shadowBlur=0;
+  }
+  if(wave){if(reduce)drawWave(16);else(function loop(ts){drawWave(ts);requestAnimationFrame(loop);})(0);}
+
+  /* OVERLAY */
+  var overlay=document.getElementById('overlay'),sc=document.getElementById('sc'),sctx=sc.getContext('2d'),
+      gate=document.getElementById('gate'),ovUI=document.getElementById('ovUI'),ovState=document.getElementById('ovState'),
+      ovHz=document.getElementById('ovHz'),ovClose=document.getElementById('ovClose'),gateGo=document.getElementById('gateGo'),
+      gateCancel=document.getElementById('gateCancel'),ovAudioBtn=document.getElementById('ovAudio'),ovBook=document.getElementById('ovBook');
+  var scW,scH,running=false,sRAF=null,sPhase=0,sLast=0,sess={f:10,name:'Calm',col:{h:190,s:90,band:'alpha'}};
+  var COLS={cyan:{h:190,s:92,band:'alpha'},violet:{h:262,s:80,band:'theta'},amber:{h:35,s:95,band:'gamma'}};
+  function sizeSC(){scW=sc.width=window.innerWidth;scH=sc.height=window.innerHeight;}
+  window.addEventListener('resize',function(){if(overlay.classList.contains('open'))sizeSC();});
+  function openO(){overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');gate.classList.remove('hidden');ovUI.classList.add('hidden');document.body.style.overflow='hidden';sizeSC();sctx.fillStyle='#050608';sctx.fillRect(0,0,scW,scH);}
+  function closeO(){running=false;if(sRAF)cancelAnimationFrame(sRAF);stopAudio();overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  document.querySelectorAll('[data-open-session]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openO();});});
+  gateCancel.addEventListener('click',closeO);ovClose.addEventListener('click',closeO);if(ovBook)ovBook.addEventListener('click',closeO);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open'))closeO();});
+  function setSession(f,name,ck){sess.f=f;sess.name=name;var c=COLS[ck]||COLS.cyan;sess.col=c;ovState.textContent=name;ovHz.textContent=f.toFixed(1)+' Hz · '+c.band;if(audioOn)setAudioFreq(f);}
+  document.querySelectorAll('#ovPresets button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#ovPresets button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');setSession(parseFloat(b.dataset.f),b.dataset.name,b.dataset.c);});});
+  gateGo.addEventListener('click',function(){gate.classList.add('hidden');ovUI.classList.remove('hidden');setSession(10,'Calm','cyan');running=true;sLast=0;sPhase=0;if(reduce)renderS(16,true);else sRAF=requestAnimationFrame(function loop(ts){renderS(ts,false);if(running)sRAF=requestAnimationFrame(loop);});});
+  function renderS(ts,st){
+    var dt=Math.min(50,ts-sLast)||16;sLast=ts;sPhase+=(sess.f)*(dt/1000)*Math.PI*2;
+    var osc=st?0.5:(0.5+0.5*Math.sin(sPhase)),lum=12+osc*30,h=sess.col.h+Math.sin(ts*0.0002)*18,s=sess.col.s;
+    var g=sctx.createRadialGradient(scW/2,scH*0.46,0,scW/2,scH*0.46,Math.max(scW,scH)*0.75);
+    g.addColorStop(0,'hsl('+h+','+s+'%,'+lum+'%)');g.addColorStop(0.55,'hsl('+h+','+s+'%,'+(lum*0.5)+'%)');g.addColorStop(1,'hsl('+(h+20)+','+s+'%,4%)');
+    sctx.fillStyle=g;sctx.fillRect(0,0,scW,scH);sctx.globalCompositeOperation='lighter';
+    for(var i=0;i<5;i++){var rp=(i/5+(sPhase/(Math.PI*2))*0.15)%1,rad=rp*Math.max(scW,scH)*0.6,a=(1-rp)*0.10*(0.6+0.4*osc);sctx.beginPath();sctx.arc(scW/2,scH*0.46,rad,0,7);sctx.strokeStyle='hsla('+(h+40)+','+s+'%,72%,'+a+')';sctx.lineWidth=2;sctx.stroke();}
+    var br=Math.max(scW,scH)*(0.05+0.02*osc),bg=sctx.createRadialGradient(scW/2,scH*0.46,0,scW/2,scH*0.46,br*3);
+    bg.addColorStop(0,'hsla('+h+','+s+'%,72%,'+(0.18+0.22*osc)+')');bg.addColorStop(1,'hsla('+h+','+s+'%,60%,0)');
+    sctx.fillStyle=bg;sctx.beginPath();sctx.arc(scW/2,scH*0.46,br*3,0,7);sctx.fill();sctx.globalCompositeOperation='source-over';
+  }
+  var audioCtx=null,carrier=null,modGain=null,masterGain=null,lfo=null,lfoGain=null,audioOn=false;
+  function startAudio(){try{var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return false;audioCtx=new AC();
+    carrier=audioCtx.createOscillator();carrier.type='sine';carrier.frequency.value=180;modGain=audioCtx.createGain();modGain.gain.value=0.0001;
+    masterGain=audioCtx.createGain();masterGain.gain.value=0;lfo=audioCtx.createOscillator();lfo.type='sine';lfo.frequency.value=sess.f;
+    lfoGain=audioCtx.createGain();lfoGain.gain.value=0.16;lfo.connect(lfoGain);lfoGain.connect(modGain.gain);carrier.connect(modGain);modGain.connect(masterGain);masterGain.connect(audioCtx.destination);
+    carrier.start();lfo.start();masterGain.gain.setTargetAtTime(0.18,audioCtx.currentTime,0.6);audioOn=true;return true;}catch(e){return false;}}
+  function setAudioFreq(f){if(lfo&&audioCtx)lfo.frequency.setTargetAtTime(f,audioCtx.currentTime,0.2);}
+  function stopAudio(){if(audioCtx){try{masterGain.gain.setTargetAtTime(0,audioCtx.currentTime,0.2);var c=audioCtx;setTimeout(function(){try{c.close();}catch(e){}},400);}catch(e){}}audioCtx=null;audioOn=false;if(ovAudioBtn)ovAudioBtn.textContent='Turn on';}
+  ovAudioBtn.addEventListener('click',function(){if(audioOn)stopAudio();else if(startAudio()){ovAudioBtn.textContent='Turn off';setAudioFreq(sess.f);}});
+})();
+</script>
+</body>
+</html>
+
